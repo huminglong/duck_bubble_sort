@@ -2,6 +2,22 @@
 小鸭子冒泡排序可视化动画项目 - 启动脚本
 
 该脚本提供程序的简单入口点，包含环境检查和错误处理。
+
+主要功能:
+- check_python_version: 检查Python版本是否满足要求
+- check_dependencies: 检查必要的依赖是否已安装
+- check_project_structure: 检查项目结构是否完整
+- initialize_environment: 初始化运行环境
+- run_application: 运行主应用程序
+- main: 主函数，负责环境检查和程序启动
+
+主要函数:
+- check_python_version: 检查Python版本函数
+- check_dependencies: 检查依赖函数
+- check_project_structure: 检查项目结构函数
+- initialize_environment: 初始化环境函数
+- run_application: 运行应用程序函数
+- main: 主函数
 """
 
 import sys

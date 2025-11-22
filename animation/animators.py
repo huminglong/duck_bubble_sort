@@ -3,6 +3,20 @@
 
 该模块包含各种专门的动画器类，用于处理不同类型的动画效果。
 每个动画器负责特定类型的动画实现。
+
+主要功能:
+- DuckAnimator: 鸭子动画器，处理单个鸭子的动画效果
+- SwapAnimator: 交换动画器，处理两只鸭子交换位置的动画
+- HighlightAnimator: 高亮动画器，处理高亮效果
+- MotherDuckAnimator: 母鸭动画器，处理大母鸭的特殊动作
+- ComparisonAnimator: 比较动画器，处理比较过程的动画效果
+
+主要类:
+- DuckAnimator: 鸭子动画器
+- SwapAnimator: 交换动画器
+- HighlightAnimator: 高亮动画器
+- MotherDuckAnimator: 母鸭动画器
+- ComparisonAnimator: 比较动画器
 """
 
 import math

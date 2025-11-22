@@ -3,6 +3,26 @@
 
 该程序展示如何使用冒泡排序算法与鸭子图形系统集成，
 包括基本用法、回调设置和状态监控。
+
+主要功能:
+- MockDuck: 模拟鸭子类，用于演示算法逻辑（不需要图形界面）
+- example_basic_usage: 基本用法示例
+- example_with_callbacks: 使用回调函数示例
+- example_pause_resume: 暂停和继续功能示例
+- example_state_monitoring: 状态监控示例
+- example_with_real_ducks: 与真实鸭子对象集成示例
+- main: 主函数，运行所有示例
+
+主要类:
+- MockDuck: 模拟鸭子类
+
+主要函数:
+- example_basic_usage: 基本用法示例函数
+- example_with_callbacks: 使用回调函数示例函数
+- example_pause_resume: 暂停和继续功能示例函数
+- example_state_monitoring: 状态监控示例函数
+- example_with_real_ducks: 与真实鸭子对象集成示例函数
+- main: 主函数
 """
 
 import sys

@@ -1,5 +1,11 @@
 """
 测试底部面板显示的脚本
+
+主要功能:
+- test_layout: 测试界面布局，特别是底部三个面板的显示
+
+主要函数:
+- test_layout: 布局测试函数
 """
 
 import tkinter as tk

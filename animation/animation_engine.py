@@ -3,6 +3,18 @@
 
 该模块包含动画引擎的核心实现，负责管理所有动画效果、
 动画队列和动画播放控制。
+
+主要功能:
+- AnimationState: 动画状态枚举
+- AnimationType: 动画类型枚举
+- Animation: 动画基类
+- AnimationEngine: 动画引擎类，管理动画队列和播放控制
+
+主要类:
+- AnimationState: 动画状态枚举
+- AnimationType: 动画类型枚举
+- Animation: 动画基类
+- AnimationEngine: 动画引擎类
 """
 
 import time

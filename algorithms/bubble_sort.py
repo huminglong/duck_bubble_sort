@@ -3,6 +3,14 @@
 
 该模块包含冒泡排序算法的实现，支持逐步执行和状态跟踪，
 用于与小鸭子图形系统集成，实现排序过程的可视化。
+
+主要功能:
+- BubbleSort类: 冒泡排序算法实现
+- 支持逐步执行和状态跟踪
+- 提供回调函数接口用于动画集成
+
+主要类:
+- BubbleSort: 冒泡排序算法类
 """
 
 from typing import List, Optional, Tuple, Callable

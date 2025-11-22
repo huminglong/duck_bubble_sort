@@ -1,5 +1,11 @@
 """
 简化的鸭子重叠修复测试程序
+
+主要功能:
+- simple_test: 简单的测试程序，测试两只鸭子交换位置时不会重叠
+
+主要函数:
+- simple_test: 简单测试函数
 """
 
 import tkinter as tk

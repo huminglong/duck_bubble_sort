@@ -5,4 +5,9 @@
 - main.py: 主应用程序
 - graphics.py: 图形模块
 - logger.py: 日志记录模块
+
+主要模块:
+- main: 主应用程序模块
+- graphics: 图形模块
+- logger: 日志记录模块
 """

@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 """
 测试修复效果的简单程序
+
+主要功能:
+- test_boundary_check: 测试边界检查
+- test_swap_animation: 测试交换动画，确保不会重叠
+
+主要函数:
+- test_boundary_check: 边界检查测试函数
+- test_swap_animation: 交换动画测试函数
 """
 
 import tkinter as tk

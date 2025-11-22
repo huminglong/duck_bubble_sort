@@ -7,6 +7,18 @@
 - MotherDuck: 大母鸭类
 
 使用Tkinter Canvas绘制鸭子图形。
+
+主要功能:
+- Duck: 鸭子基类，定义所有鸭子的基本属性和行为
+- BabyDuck: 小鸭子类，用于表示排序数组中的元素
+- MotherDuck: 大母鸭类，用于执行排序操作
+- DuckFactory: 鸭子工厂类，用于创建不同类型的鸭子
+
+主要类:
+- Duck: 鸭子基类
+- BabyDuck: 小鸭子类
+- MotherDuck: 大母鸭类
+- DuckFactory: 鸭子工厂类
 """
 
 import tkinter as tk

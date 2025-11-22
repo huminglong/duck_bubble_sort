@@ -3,6 +3,12 @@
 
 该模块提供动画系统与排序算法的集成接口，负责接收排序算法的
 状态变化通知并触发相应的动画效果。
+
+主要功能:
+- SortAnimationIntegration: 排序动画集成类，连接排序算法和动画系统
+
+主要类:
+- SortAnimationIntegration: 排序动画集成类
 """
 
 from typing import List, Optional, Callable

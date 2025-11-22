@@ -1,5 +1,15 @@
 """
 测试鸭子重叠修复效果的程序
+
+主要功能:
+- test_swap_animation: 测试交换动画，确保鸭子不会重叠
+- test_comparison_animation: 测试比较动画，确保母鸭不会超出边界
+- test_multiple_swaps: 测试多次交换动画
+
+主要函数:
+- test_swap_animation: 交换动画测试函数
+- test_comparison_animation: 比较动画测试函数
+- test_multiple_swaps: 多次交换测试函数
 """
 
 import sys

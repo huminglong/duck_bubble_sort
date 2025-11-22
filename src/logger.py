@@ -3,6 +3,20 @@
 
 该模块提供统一的日志记录功能，用于记录应用程序运行状态、
 排序步骤、动画事件等信息。
+
+主要功能:
+- get_logger: 获取日志记录器
+- log_sort_step: 记录排序步骤
+- log_animation_event: 记录动画事件
+- log_user_action: 记录用户操作
+- log_error: 记录错误信息
+
+主要函数:
+- get_logger: 获取日志记录器函数
+- log_sort_step: 记录排序步骤函数
+- log_animation_event: 记录动画事件函数
+- log_user_action: 记录用户操作函数
+- log_error: 记录错误信息函数
 """
 
 import logging

@@ -5,6 +5,14 @@
 - 创建和管理GUI界面
 - 集成鸭子图形系统、排序算法和动画系统
 - 处理用户交互和控制
+
+主要功能:
+- DuckBubbleSortApp: 小鸭子冒泡排序可视化主应用程序类
+- 提供GUI界面和用户交互功能
+- 集成排序算法和动画系统
+
+主要类:
+- DuckBubbleSortApp: 主应用程序类
 """
 
 import tkinter as tk
