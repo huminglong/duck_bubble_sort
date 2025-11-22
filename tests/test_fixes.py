@@ -4,7 +4,7 @@
 """
 
 import tkinter as tk
-from graphics import DuckFactory, BabyDuck, MotherDuck
+from src.graphics import DuckFactory, BabyDuck, MotherDuck
 from animation.animators import SwapAnimator
 from animation.animation_engine import AnimationEngine
 import time

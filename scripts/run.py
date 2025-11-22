@@ -64,12 +64,13 @@ def check_project_structure() -> bool:
         bool: 项目结构是否完整
     """
     required_files = [
-        "duck_bubble_sort/graphics.py",
-        "duck_bubble_sort/algorithms/bubble_sort.py",
-        "duck_bubble_sort/animation/animation_engine.py",
-        "duck_bubble_sort/animation/animators.py",
-        "duck_bubble_sort/animation/sort_animation_integration.py",
-        "duck_bubble_sort/main.py"
+        "src/main.py",
+        "src/graphics.py",
+        "src/logger.py",
+        "algorithms/bubble_sort.py",
+        "animation/animation_engine.py",
+        "animation/animators.py",
+        "animation/sort_animation_integration.py"
     ]
     
     missing_files = []
@@ -100,7 +101,7 @@ def initialize_environment() -> bool:
         os.environ["PYTHONPATH"] = project_root
         
         # 创建必要的目录（如果不存在）
-        directories = ["duck_bubble_sort/assets", "duck_bubble_sort/audio", "duck_bubble_sort/data", "duck_bubble_sort/logs"]
+        directories = ["logs"]
         for directory in directories:
             dir_path = os.path.join(project_root, directory)
             if not os.path.exists(dir_path):
@@ -126,7 +127,7 @@ def run_application() -> Optional[int]:
         print("=" * 50)
         
         # 导入并运行主程序
-        from main import main
+        from src.main import main
         
         print("√ 成功导入主程序模块")
         print("启动应用程序...")

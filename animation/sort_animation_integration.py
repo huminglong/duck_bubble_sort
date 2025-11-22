@@ -7,10 +7,10 @@
 
 from typing import List, Optional, Callable
 from algorithms.bubble_sort import BubbleSort
-from graphics import BabyDuck, MotherDuck
+from src.graphics import BabyDuck, MotherDuck
 from .animation_engine import AnimationEngine, AnimationState
 from .animators import DuckAnimator, SwapAnimator, HighlightAnimator, MotherDuckAnimator, ComparisonAnimator
-from logger import get_logger, log_animation_event
+from src.logger import get_logger, log_animation_event
 
 
 class SortAnimationIntegration:

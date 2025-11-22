@@ -9,8 +9,8 @@ import math
 import time
 from typing import List, Tuple, Optional, Callable
 from .animation_engine import Animation, AnimationType, AnimationEngine
-from graphics import Duck, BabyDuck, MotherDuck
-from logger import get_logger
+from src.graphics import Duck, BabyDuck, MotherDuck
+from src.logger import get_logger
 
 
 class DuckAnimator:

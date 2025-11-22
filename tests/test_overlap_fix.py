@@ -7,7 +7,7 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import tkinter as tk
-from graphics import DuckFactory
+from src.graphics import DuckFactory
 from animation.animators import SwapAnimator, ComparisonAnimator
 from animation.animation_engine import AnimationEngine
 

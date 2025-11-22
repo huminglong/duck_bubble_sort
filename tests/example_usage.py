@@ -10,10 +10,10 @@ import os
 import time
 
 # 添加项目根目录到Python路径
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from algorithms.bubble_sort import BubbleSort
-from graphics import BabyDuck, DuckFactory
+from src.graphics import BabyDuck, DuckFactory
 import tkinter as tk
 
 

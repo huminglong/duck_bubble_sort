@@ -139,7 +139,7 @@ class AnimationEngine:
         
     def play(self) -> None:
         """开始播放动画"""
-        from logger import get_logger
+        from src.logger import get_logger
         logger = get_logger()
         
         # 检查是否在动画线程中调用
@@ -229,7 +229,7 @@ class AnimationEngine:
         
     def _animation_loop(self) -> None:
         """动画主循环（在单独线程中运行）"""
-        from logger import get_logger
+        from src.logger import get_logger
         logger = get_logger()
         logger.debug("动画线程启动")
         

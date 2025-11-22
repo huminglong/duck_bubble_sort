@@ -7,7 +7,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from graphics import DuckFactory
+from src.graphics import DuckFactory
 from animation.animators import SwapAnimator
 from animation.animation_engine import AnimationEngine
 

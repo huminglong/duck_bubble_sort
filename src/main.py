@@ -15,11 +15,11 @@ import math
 from typing import List, Optional
 from tkinter import Canvas
 
-from graphics import DuckFactory, BabyDuck, MotherDuck
+from src.graphics import DuckFactory, BabyDuck, MotherDuck
 from algorithms.bubble_sort import BubbleSort
 from animation.animation_engine import AnimationEngine
 from animation.sort_animation_integration import SortAnimationIntegration
-from logger import get_logger, log_user_action, log_error
+from src.logger import get_logger, log_user_action, log_error
 
 
 class DuckBubbleSortApp:
