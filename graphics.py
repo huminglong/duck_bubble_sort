@@ -102,16 +102,18 @@ class Duck(ABC):
 class BabyDuck(Duck):
     """小鸭子类，用于表示排序数组中的元素"""
     
-    # 小鸭子的颜色方案
+    # 小鸭子的颜色方案 - 更柔和现代的配色
     BODY_COLOR = "#FFD700"  # 金黄色
     BEAK_COLOR = "#FF8C00"  # 深橙色
     EYE_COLOR = "#000000"   # 黑色
     WING_COLOR = "#FFA500"  # 橙色
+    BODY_OUTLINE = "#8B7500"  # 深金色轮廓
     
-    # 状态颜色
+    # 状态颜色 - 更丰富的视觉效果
     HIGHLIGHT_COLOR = "#FF69B4"  # 粉红色（高亮）
     COMPARING_COLOR = "#00CED1"  # 深青色（比较中）
     SORTED_COLOR = "#32CD32"     # 绿色（已排序）
+    GLOW_COLOR = "#FFFFE0"       # 发光效果颜色
     
     def __init__(self, canvas: tk.Canvas, x: float, y: float, size: float, value: int):
         """
@@ -139,13 +141,30 @@ class BabyDuck(Duck):
         beak_length = self.size * 0.15
         eye_radius = self.size * 0.05
         
-        # 绘制身体（椭圆）
+        # 添加阴影效果
+        shadow_offset = 3
+        shadow = self.canvas.create_oval(
+            self.x - body_width/2 + shadow_offset, self.y - body_height/2 + shadow_offset,
+            self.x + body_width/2 + shadow_offset, self.y + body_height/2 + shadow_offset,
+            fill="#D3D3D3", outline="", stipple="gray50"
+        )
+        self.graphic_elements.append(shadow)
+        
+        # 绘制身体（椭圆）- 带有渐变效果
         body = self.canvas.create_oval(
             self.x - body_width/2, self.y - body_height/2,
             self.x + body_width/2, self.y + body_height/2,
-            fill=self._get_body_color(), outline="#000000", width=1
+            fill=self._get_body_color(), outline=self.BODY_OUTLINE, width=2
         )
         self.graphic_elements.append(body)
+        
+        # 绘制身体高光
+        highlight = self.canvas.create_oval(
+            self.x - body_width/4, self.y - body_height/3,
+            self.x - body_width/8, self.y - body_height/4,
+            fill=self.GLOW_COLOR, outline="", stipple="gray75"
+        )
+        self.graphic_elements.append(highlight)
         
         # 绘制头部（圆形）
         head_x = self.x + body_width * 0.3
@@ -153,7 +172,7 @@ class BabyDuck(Duck):
         head = self.canvas.create_oval(
             head_x - head_radius, head_y - head_radius,
             head_x + head_radius, head_y + head_radius,
-            fill=self._get_body_color(), outline="#000000", width=1
+            fill=self._get_body_color(), outline=self.BODY_OUTLINE, width=2
         )
         self.graphic_elements.append(head)
         
@@ -168,15 +187,33 @@ class BabyDuck(Duck):
         )
         self.graphic_elements.append(beak)
         
-        # 绘制眼睛（小圆形）
+        # 绘制眼睛（更生动的设计）
         eye_x = head_x + head_radius * 0.5
         eye_y = head_y - head_radius * 0.3
+        
+        # 眼白
+        eye_white = self.canvas.create_oval(
+            eye_x - eye_radius * 1.5, eye_y - eye_radius * 1.5,
+            eye_x + eye_radius * 1.5, eye_y + eye_radius * 1.5,
+            fill="white", outline="#000000", width=1
+        )
+        self.graphic_elements.append(eye_white)
+        
+        # 眼珠
         eye = self.canvas.create_oval(
             eye_x - eye_radius, eye_y - eye_radius,
             eye_x + eye_radius, eye_y + eye_radius,
-            fill=self.EYE_COLOR, outline="#000000", width=1
+            fill=self.EYE_COLOR, outline=""
         )
         self.graphic_elements.append(eye)
+        
+        # 眼睛高光
+        eye_highlight = self.canvas.create_oval(
+            eye_x - eye_radius * 0.3, eye_y - eye_radius * 0.3,
+            eye_x - eye_radius * 0.1, eye_y - eye_radius * 0.1,
+            fill="white", outline=""
+        )
+        self.graphic_elements.append(eye_highlight)
         
         # 绘制翅膀（小椭圆）
         wing_width = body_width * 0.3
@@ -188,10 +225,18 @@ class BabyDuck(Duck):
         )
         self.graphic_elements.append(wing)
         
+        # 数值背景
+        text_bg = self.canvas.create_rectangle(
+            self.x - self.size/4, self.y + body_height/2 + 5,
+            self.x + self.size/4, self.y + body_height/2 + 20,
+            fill="#FFFFFF", outline="#8B7500", width=1
+        )
+        self.graphic_elements.append(text_bg)
+        
         # 显示数值
         text = self.canvas.create_text(
-            self.x, self.y + body_height/2 + 10,
-            text=str(self.value), font=("Arial", int(self.size/4), "bold"),
+            self.x, self.y + body_height/2 + 12,
+            text=str(self.value), font=("Arial", int(self.size/3.5), "bold"),
             fill="#000000"
         )
         self.graphic_elements.append(text)
@@ -212,19 +257,39 @@ class BabyDuck(Duck):
         if self.graphic_elements:
             # 更新身体颜色
             body_color = self._get_body_color()
-            self.canvas.itemconfig(self.graphic_elements[0], fill=body_color)
-            self.canvas.itemconfig(self.graphic_elements[1], fill=body_color)
+            self.canvas.itemconfig(self.graphic_elements[2], fill=body_color)  # 身体
+            self.canvas.itemconfig(self.graphic_elements[5], fill=body_color)  # 头部
+            
+            # 添加闪烁效果
+            if self.is_comparing:
+                self._add_glow_effect()
+            elif self.is_sorted:
+                self._add_sorted_effect()
+    
+    def _add_glow_effect(self) -> None:
+        """添加比较时的发光效果"""
+        if len(self.graphic_elements) > 10:  # 确保有足够的元素
+            # 为身体添加发光边框
+            self.canvas.itemconfig(self.graphic_elements[2], width=3)
+    
+    def _add_sorted_effect(self) -> None:
+        """添加排序完成时的特效"""
+        if len(self.graphic_elements) > 10:
+            # 为已排序的鸭子添加特殊边框
+            self.canvas.itemconfig(self.graphic_elements[2], width=4)
 
 
 class MotherDuck(Duck):
     """大母鸭类，用于执行排序操作"""
     
-    # 大母鸭的颜色方案
+    # 大母鸭的颜色方案 - 更优雅的配色
     BODY_COLOR = "#8B4513"  # 棕色
     BEAK_COLOR = "#FF6347"  # 番茄红
     EYE_COLOR = "#000000"   # 黑色
     WING_COLOR = "#A0522D"  # 赭色
     CROWN_COLOR = "#FFD700" # 金色皇冠
+    BODY_OUTLINE = "#654321" # 深棕色轮廓
+    CROWN_GEM = "#FF1493"   # 皇冠宝石
     
     def __init__(self, canvas: tk.Canvas, x: float, y: float):
         """
@@ -253,13 +318,30 @@ class MotherDuck(Duck):
         eye_radius = self.size * 0.05
         crown_height = self.size * 0.2
         
-        # 绘制身体（椭圆）
+        # 添加阴影效果
+        shadow_offset = 4
+        shadow = self.canvas.create_oval(
+            self.x - body_width/2 + shadow_offset, self.y - body_height/2 + shadow_offset,
+            self.x + body_width/2 + shadow_offset, self.y + body_height/2 + shadow_offset,
+            fill="#A9A9A9", outline="", stipple="gray50"
+        )
+        self.graphic_elements.append(shadow)
+        
+        # 绘制身体（椭圆）- 带有渐变效果
         body = self.canvas.create_oval(
             self.x - body_width/2, self.y - body_height/2,
             self.x + body_width/2, self.y + body_height/2,
-            fill=self.BODY_COLOR, outline="#000000", width=2
+            fill=self.BODY_COLOR, outline=self.BODY_OUTLINE, width=3
         )
         self.graphic_elements.append(body)
+        
+        # 绘制身体高光
+        highlight = self.canvas.create_oval(
+            self.x - body_width/3, self.y - body_height/2.5,
+            self.x - body_width/6, self.y - body_height/3,
+            fill="#D2691E", outline="", stipple="gray75"
+        )
+        self.graphic_elements.append(highlight)
         
         # 绘制头部（圆形）
         head_x = self.x + body_width * 0.3
@@ -267,20 +349,30 @@ class MotherDuck(Duck):
         head = self.canvas.create_oval(
             head_x - head_radius, head_y - head_radius,
             head_x + head_radius, head_y + head_radius,
-            fill=self.BODY_COLOR, outline="#000000", width=2
+            fill=self.BODY_COLOR, outline=self.BODY_OUTLINE, width=3
         )
         self.graphic_elements.append(head)
         
-        # 绘制皇冠（三角形）
+        # 绘制皇冠（更华丽的三角形）
         crown_points = [
             head_x - head_radius * 0.8, head_y - head_radius - crown_height/2,  # 左下
+            head_x - head_radius * 0.4, head_y - head_radius - crown_height * 0.8,  # 左中
             head_x, head_y - head_radius - crown_height,  # 顶点
+            head_x + head_radius * 0.4, head_y - head_radius - crown_height * 0.8,  # 右中
             head_x + head_radius * 0.8, head_y - head_radius - crown_height/2  # 右下
         ]
         crown = self.canvas.create_polygon(
-            crown_points, fill=self.CROWN_COLOR, outline="#000000", width=2
+            crown_points, fill=self.CROWN_COLOR, outline=self.BODY_OUTLINE, width=2
         )
         self.graphic_elements.append(crown)
+        
+        # 皇冠上的宝石
+        gem = self.canvas.create_oval(
+            head_x - head_radius * 0.15, head_y - head_radius - crown_height * 0.7,
+            head_x + head_radius * 0.15, head_y - head_radius - crown_height * 0.5,
+            fill=self.CROWN_GEM, outline="#FFFFFF", width=1
+        )
+        self.graphic_elements.append(gem)
         
         # 绘制嘴巴（三角形）
         beak_points = [
@@ -293,15 +385,33 @@ class MotherDuck(Duck):
         )
         self.graphic_elements.append(beak)
         
-        # 绘制眼睛（小圆形）
+        # 绘制眼睛（更生动的设计）
         eye_x = head_x + head_radius * 0.5
         eye_y = head_y - head_radius * 0.3
+        
+        # 眼白
+        eye_white = self.canvas.create_oval(
+            eye_x - eye_radius * 1.5, eye_y - eye_radius * 1.5,
+            eye_x + eye_radius * 1.5, eye_y + eye_radius * 1.5,
+            fill="white", outline=self.BODY_OUTLINE, width=1
+        )
+        self.graphic_elements.append(eye_white)
+        
+        # 眼珠
         eye = self.canvas.create_oval(
             eye_x - eye_radius, eye_y - eye_radius,
             eye_x + eye_radius, eye_y + eye_radius,
-            fill=self.EYE_COLOR, outline="#000000", width=1
+            fill=self.EYE_COLOR, outline=""
         )
         self.graphic_elements.append(eye)
+        
+        # 眼睛高光
+        eye_highlight = self.canvas.create_oval(
+            eye_x - eye_radius * 0.3, eye_y - eye_radius * 0.3,
+            eye_x - eye_radius * 0.1, eye_y - eye_radius * 0.1,
+            fill="white", outline=""
+        )
+        self.graphic_elements.append(eye_highlight)
         
         # 绘制翅膀（大椭圆）
         wing_width = body_width * 0.4
@@ -313,11 +423,19 @@ class MotherDuck(Duck):
         )
         self.graphic_elements.append(wing)
         
+        # 文字背景
+        text_bg = self.canvas.create_rectangle(
+            self.x - 20, self.y + body_height/2 + 10,
+            self.x + 20, self.y + body_height/2 + 30,
+            fill="#FFFFFF", outline=self.BODY_OUTLINE, width=2
+        )
+        self.graphic_elements.append(text_bg)
+        
         # 显示"母鸭"文字
         text = self.canvas.create_text(
-            self.x, self.y + body_height/2 + 15,
-            text="母鸭", font=("Arial", 12, "bold"),
-            fill="#000000"
+            self.x, self.y + body_height/2 + 20,
+            text="👑 母鸭", font=("Arial", 14, "bold"),
+            fill="#8B4513"
         )
         self.graphic_elements.append(text)
     

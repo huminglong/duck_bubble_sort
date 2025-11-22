@@ -6,11 +6,11 @@
 """
 
 from typing import List, Optional, Callable
-from duck_bubble_sort.algorithms.bubble_sort import BubbleSort
-from duck_bubble_sort.graphics import BabyDuck, MotherDuck
-from duck_bubble_sort.animation.animation_engine import AnimationEngine, AnimationState
-from duck_bubble_sort.animation.animators import DuckAnimator, SwapAnimator, HighlightAnimator, MotherDuckAnimator, ComparisonAnimator
-from duck_bubble_sort.logger import get_logger, log_animation_event
+from algorithms.bubble_sort import BubbleSort
+from graphics import BabyDuck, MotherDuck
+from .animation_engine import AnimationEngine, AnimationState
+from .animators import DuckAnimator, SwapAnimator, HighlightAnimator, MotherDuckAnimator, ComparisonAnimator
+from logger import get_logger, log_animation_event
 
 
 class SortAnimationIntegration:

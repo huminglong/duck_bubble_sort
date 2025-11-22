@@ -7,7 +7,7 @@
 
 from typing import List, Optional, Tuple, Callable
 import time
-from duck_bubble_sort.logger import get_logger, log_sort_step
+from logger import get_logger, log_sort_step
 
 
 class BubbleSort:

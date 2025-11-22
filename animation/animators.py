@@ -8,7 +8,9 @@
 import math
 import time
 from typing import List, Tuple, Optional, Callable
-from duck_bubble_sort.animation.animation_engine import Animation, AnimationType, AnimationEngine
+from .animation_engine import Animation, AnimationType, AnimationEngine
+from graphics import Duck, BabyDuck, MotherDuck
+from logger import get_logger
 
 
 class DuckAnimator:
