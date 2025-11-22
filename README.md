@@ -28,7 +28,7 @@
 1. **克隆项目**
 
    ```bash
-   git clone https://github.com/yourusername/duck-bubble-sort.git
+   git clone git clone ssh://git@ssh.github.com:443/huminglong/duck_bubble_sort.git
    cd duck-bubble-sort
    ```
 
